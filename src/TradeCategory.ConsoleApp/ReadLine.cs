@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TradeCategory.Repository;
+﻿using TradeCategory.Repository;
 
 namespace TradeCategory.ConsoleApp
 {
@@ -33,15 +27,8 @@ namespace TradeCategory.ConsoleApp
             if (string.IsNullOrEmpty(referenceDate))
                 throw new ArgumentException("Date is null or empty.", referenceDate);
 
-            string pattern = "MM/dd/yyyy";
-
-            if (DateTime.TryParseExact(referenceDate, pattern, new System.Globalization.CultureInfo("en-US"),
+            if (!DateTime.TryParse(referenceDate, new System.Globalization.CultureInfo("en-US"),
                                        System.Globalization.DateTimeStyles.None, out _referenceDate))
-            {
-                //Console.WriteLine("Converted '{0}' to {1:d}.",
-                //                  referenceDate, _referenceDate);
-            }
-            else
                 throw new ArgumentException("Unable to convert to a date and time.",
                                   referenceDate);
         }
@@ -87,11 +74,7 @@ namespace TradeCategory.ConsoleApp
 
             if (elements.Length == 3)
             {
-                if(double.TryParse(elements[0], out _value))
-                {
-                    //
-                }
-                else
+                if(!double.TryParse(elements[0], out _value))
                     errorMessage += $"{Environment.NewLine} Value is not valid: {elements[0]}";
 
                 if(elements[1] == "Private" || elements[1] == "Public")
@@ -99,12 +82,8 @@ namespace TradeCategory.ConsoleApp
                 else
                     errorMessage += $"{Environment.NewLine} Client sector is not valid: {elements[1]}";
 
-                if (DateTime.TryParse(elements[2], new System.Globalization.CultureInfo("en-US"),
+                if (!DateTime.TryParse(elements[2], new System.Globalization.CultureInfo("en-US"),
                                        System.Globalization.DateTimeStyles.None, out _nextPaymentDate))
-                {
-                    ///
-                }
-                else
                     errorMessage += $"{Environment.NewLine} Next payment date is not valid: {elements[0]}";
 
                 if(string.IsNullOrEmpty(errorMessage))

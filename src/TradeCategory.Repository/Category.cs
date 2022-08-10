@@ -15,23 +15,22 @@
         {
             this.referenceDate = referenceDate;
 
-            Trade trade = new Trade();
+            Trade trade = new();
             trade.Value = value;
             trade.ClientSector = clientSector;
             trade.NextPaymentDate = nextPaymentDate;
-
             trades.Add(trade);
         }
 
         public List<string> GetCategory()
         {
-            List<string> categories = new List<string>();
+            List<string> categories = new();
 
             try
             {
                 foreach (var trade in trades)
                 {
-                    int diffDate = (referenceDate - trade.NextPaymentDate).Days;
+                    var diffDate = (referenceDate - trade.NextPaymentDate).Days;
 
                     if (diffDate > 30)
                         categories.Add("EXPIRED");
