@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using TradeCategory.Repository.Strategy;
+using System.Linq;
 
 namespace TradeCategory.Repository
 {
@@ -31,28 +32,28 @@ namespace TradeCategory.Repository
             RuleHighRisk ruleHighRisk = new RuleHighRisk();
             RuleMediumRisk ruleMediumRisk = new RuleMediumRisk();
             RuleNone ruleNone = new RuleNone();
-            
-            List<ICategoryRule> categoryRules = new();
-            categoryRules.Add(ruleExpired);
-            categoryRules.Add(ruleHighRisk);
-            categoryRules.Add(ruleMediumRisk);
-            categoryRules.Add(ruleNone);
-            
+
+            List<ICategoryRule> categoryRules = new()
+            {
+                ruleExpired,
+                ruleHighRisk,
+                ruleMediumRisk,
+                ruleNone
+            };
+
             List<string> categories = new();
 
             try
             {
-                foreach (var trade in trades)
+                foreach (var categoryRule in from trade in trades
+                                             from categoryRule in categoryRules
+                                             where categoryRule.Verify(trade)
+                                             select categoryRule)
                 {
-                    foreach(var categoryRule in categoryRules)
-                    {
-                        if (categoryRule.Verify(trade))
-                        {
-                            categories.Add(categoryRule.NameCategory);
-                            break;
-                        }
-                    }
+                    categories.Add(categoryRule.NameCategory);
+                    break;
                 }
+
                 return categories;
             }
             catch

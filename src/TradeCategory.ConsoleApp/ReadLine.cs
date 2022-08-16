@@ -8,11 +8,30 @@ namespace TradeCategory.ConsoleApp
 
         internal void Read()
         {
+            Category category = new();
+
             try
             {
-                GetRefenceDate();
+                SetRefenceDate();
 
-                GetNumberLines();
+                int numTrades;
+                if (int.TryParse(Console.ReadLine(), out numTrades))
+                {
+                    for (int i = 1; i <= numTrades; i++)
+                    {
+                        SetTrade(category);
+                    }
+
+                    Console.WriteLine();
+
+                    category.GetCategory().ForEach(delegate (string s) {
+                        Console.WriteLine(s);
+                    });
+                }
+                else
+                {
+                    throw new ArgumentException("Number of lines is not valid.");
+                }
             }
             catch (Exception e)
             {
@@ -20,7 +39,7 @@ namespace TradeCategory.ConsoleApp
             }
         }
 
-        private void GetRefenceDate()
+        private void SetRefenceDate()
         {
             var referenceDate = Console.ReadLine();
 
@@ -31,31 +50,6 @@ namespace TradeCategory.ConsoleApp
                                        System.Globalization.DateTimeStyles.None, out _referenceDate))
                 throw new ArgumentException("Unable to convert to a date and time.",
                                   referenceDate);
-        }
-
-        private void GetNumberLines()
-        {
-            Category category = new();
-
-            int numTrades;
-
-            if (int.TryParse(Console.ReadLine(), out numTrades))
-            {
-                for (int i = 1; i <= numTrades; i++)
-                {
-                    SetTrade(category);
-                }
-
-                Console.WriteLine();
-
-                category.GetCategory().ForEach(delegate (string s) {
-                    Console.WriteLine(s);
-                });
-            }
-            else
-            {
-                throw new ArgumentException("Number of lines is not valid.");
-            }
         }
 
         private void SetTrade(Category category)
