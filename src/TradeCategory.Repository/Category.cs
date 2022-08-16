@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using TradeCategory.Repository.Strategy;
 
 namespace TradeCategory.Repository
 {
@@ -29,11 +30,13 @@ namespace TradeCategory.Repository
             RuleExpired ruleExpired = new RuleExpired(referenceDate);
             RuleHighRisk ruleHighRisk = new RuleHighRisk();
             RuleMediumRisk ruleMediumRisk = new RuleMediumRisk();
+            RuleNone ruleNone = new RuleNone();
             
             List<ICategoryRule> categoryRules = new();
             categoryRules.Add(ruleExpired);
             categoryRules.Add(ruleHighRisk);
             categoryRules.Add(ruleMediumRisk);
+            categoryRules.Add(ruleNone);
             
             List<string> categories = new();
 
@@ -48,8 +51,6 @@ namespace TradeCategory.Repository
                             categories.Add(categoryRule.NameCategory);
                             break;
                         }
-                        else
-                            categories.Add(" ");
                     }
                 }
                 return categories;
@@ -58,70 +59,6 @@ namespace TradeCategory.Repository
             {
                 throw;
             }
-        }
-    }
-
-    interface ICategoryRule
-    {
-        bool Verify(Trade trade);
-
-        string NameCategory { get; }
-    }
-
-    internal class RuleExpired : ICategoryRule
-    {
-        public string NameCategory { get; }    
-        private DateTime _referenceDate;
-
-        public RuleExpired(DateTime referenceDate)
-        {
-            _referenceDate = referenceDate;
-            NameCategory = "Expired";
-        }
-
-        public bool Verify(Trade trade)
-        {
-            var diffDate = (_referenceDate - trade.NextPaymentDate).Days;
-            if (diffDate > 30)
-                return true;
-            else
-                return false;
-        }
-    }
-
-    internal class RuleHighRisk : ICategoryRule
-    {
-        public string NameCategory { get; }
-
-        public RuleHighRisk()
-        {
-            NameCategory = "HIGHRISK";
-        }
-
-        public bool Verify(Trade trade)
-        {
-            if (trade.Value == 10000000 && trade.ClientSector == "Public")
-                return true;
-            else
-                return false;
-        }
-    }
-
-    internal class RuleMediumRisk : ICategoryRule
-    {
-        public string NameCategory { get; }
-
-        public RuleMediumRisk()
-        {
-            NameCategory = "MEDIUMRISK";
-        }
-
-        public bool Verify(Trade trade)
-        {
-            if (trade.Value == 10000000 && trade.ClientSector == "Private")
-                return true;
-            else
-                return false;
         }
     }
 }
