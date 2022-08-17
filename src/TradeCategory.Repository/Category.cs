@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using TradeCategory.Repository.Strategy;
 using System.Linq;
+using TradeCategory.Repository.Interfaces;
 
 namespace TradeCategory.Repository
 {

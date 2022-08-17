@@ -1,4 +1,6 @@
-﻿namespace TradeCategory.Repository.Strategy
+﻿using TradeCategory.Repository.Interfaces;
+
+namespace TradeCategory.Repository.Strategy
 {
     internal class RuleNone : ICategoryRule
     {

@@ -1,4 +1,4 @@
-﻿namespace TradeCategory.Repository.Strategy
+﻿namespace TradeCategory.Repository.Interfaces
 {
     internal interface ICategoryRule
     {
