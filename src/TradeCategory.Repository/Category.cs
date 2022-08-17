@@ -45,13 +45,16 @@ namespace TradeCategory.Repository
 
             try
             {
-                foreach (var categoryRule in from trade in trades
-                                             from categoryRule in categoryRules
-                                             where categoryRule.Verify(trade)
-                                             select categoryRule)
+                foreach (var trade in trades)
                 {
-                    categories.Add(categoryRule.NameCategory);
-                    break;
+                    foreach (var categoryRule in categoryRules)
+                    {
+                        if (categoryRule.Verify(trade))
+                        {
+                            categories.Add(categoryRule.NameCategory);
+                            break;
+                        }
+                    }
                 }
 
                 return categories;
