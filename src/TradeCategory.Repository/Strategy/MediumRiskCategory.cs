@@ -2,18 +2,18 @@
 
 namespace TradeCategory.Repository.Strategy
 {
-    internal class RuleHighRisk : ICategoryRule
+    internal class MediumRiskCategory : ICategoryRule
     {
         public string NameCategory { get; }
 
-        public RuleHighRisk()
+        public MediumRiskCategory()
         {
-            NameCategory = "HIGHRISK";
+            NameCategory = "MEDIUMRISK";
         }
 
         public bool Verify(Trade trade)
         {
-            if (trade.Value > 1000000 && trade.ClientSector == "Private")
+            if (trade.Value > 1000000 && trade.ClientSector == "Public")
                 return true;
             else
                 return false;

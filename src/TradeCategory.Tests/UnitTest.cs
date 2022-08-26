@@ -12,7 +12,7 @@ namespace TradeCategory.Tests
             DateTime _nextPaymentDate = new DateTime(2020,07, 01);
             DateTime _referenceDate = new DateTime(2020, 12, 11);
 
-            Category category = new();
+            CategoryReport category = new();
             category.SetTrade(_value, _clientSector, _nextPaymentDate, _referenceDate);
             var result = category.GetCategory().ToArray();
 
@@ -27,7 +27,7 @@ namespace TradeCategory.Tests
             DateTime _nextPaymentDate = new DateTime(2025, 12, 29);
             DateTime _referenceDate = new DateTime(2020, 12, 11);
 
-            Category category = new();
+            CategoryReport category = new();
             category.SetTrade(_value, _clientSector, _nextPaymentDate, _referenceDate);
             var result = category.GetCategory().ToArray();
 
@@ -42,7 +42,7 @@ namespace TradeCategory.Tests
             DateTime _nextPaymentDate = new DateTime(2024, 01, 02);
             DateTime _referenceDate = new DateTime(2020, 12, 11);
 
-            Category category = new();
+            CategoryReport category = new();
             category.SetTrade(_value, _clientSector, _nextPaymentDate, _referenceDate);
             var result = category.GetCategory().ToArray();
 

@@ -1,0 +1,95 @@
+	class ProductControlReport
+
+    {
+
+        public void Run()
+
+        {
+
+            //CONTEXT = ONSHORE ()
+
+            var high = new HighRiskCategory();
+
+            var medium = new MediumRiskCategory();
+
+            var low = new LowRiskCategory();
+
+            var list = new List<ICategoryRule> { high, medium, low };
+
+            //use list....
+
+        }
+
+    }
+
+    class TraderReport
+
+    {
+
+        public void Run()
+
+        {
+
+            //CONTEXT = OFFSHORE
+
+            var high = new HighRiskCategory();
+
+            var medium = new MediumRiskCategory();
+
+            var notCategorized = new NonIdentifiedCategory();
+
+            var list = new List<ICategoryRule> { high, medium, notCategorized };
+
+            //use list....
+
+        }
+
+    }
+
+    class AccountingReport
+
+    {
+
+        public void Run()
+
+        {
+
+            //CONTEXT = OFFSHORE
+
+            var high = new HighRiskCategory();
+
+            var medium = new MediumRiskCategory();
+
+            var notCategorized = new NonIdentifiedCategory();
+
+            var list = new List<ICategoryRule> { high, medium, notCategorized };
+
+            //use list....
+
+        }
+
+    }
+
+    class OperationalReport
+
+    {
+
+        public void Run()
+
+        {
+
+            //CONTEXT = OFFSHORE
+
+            var high = new HighRiskCategory();
+
+            var medium = new MediumRiskCategory();
+
+            var notCategorized = new NonIdentifiedCategory();
+
+            var list = new List<ICategoryRule> { high, medium, notCategorized };
+
+            //use list....
+
+        }
+
+    }

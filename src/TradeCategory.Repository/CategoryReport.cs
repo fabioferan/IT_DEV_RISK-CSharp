@@ -5,13 +5,13 @@ using TradeCategory.Repository.Interfaces;
 
 namespace TradeCategory.Repository
 {
-    public class Category
+    public class CategoryReport
     {
         private DateTime referenceDate { get; set; }
 
         List<Trade> trades;
 
-        public Category()
+        public CategoryReport()
         {
             trades = new List<Trade>();
         }
@@ -29,17 +29,17 @@ namespace TradeCategory.Repository
 
         public List<string> GetCategory()
         {
-            RuleExpired ruleExpired = new RuleExpired(referenceDate);
-            RuleHighRisk ruleHighRisk = new RuleHighRisk();
-            RuleMediumRisk ruleMediumRisk = new RuleMediumRisk();
-            RuleNone ruleNone = new RuleNone();
+            var expiredCategory = new ExpiredCategory(referenceDate);
+            var highRiskCategory = new HighRiskCategory();
+            var mediumRiskCategory = new MediumRiskCategory();
+            var nonIdentifiedCategory = new NonIdentifiedCategory();
 
             List<ICategoryRule> categoryRules = new()
             {
-                ruleExpired,
-                ruleHighRisk,
-                ruleMediumRisk,
-                ruleNone
+                expiredCategory,
+                highRiskCategory,
+                mediumRiskCategory,
+                nonIdentifiedCategory
             };
 
             List<string> categories = new();

@@ -2,12 +2,12 @@
 
 namespace TradeCategory.Repository.Strategy
 {
-    internal class RuleNone : ICategoryRule
+    internal class NonIdentifiedCategory : ICategoryRule
     {
         public string NameCategory { get; }
         private DateTime _referenceDate;
 
-        public RuleNone()
+        public NonIdentifiedCategory()
         {
             NameCategory = " ";
         }

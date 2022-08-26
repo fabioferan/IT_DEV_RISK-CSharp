@@ -1,4 +1,6 @@
-﻿using TradeCategory.Repository;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+using TradeCategory.Repository;
 
 namespace TradeCategory.ConsoleApp
 {
@@ -8,7 +10,7 @@ namespace TradeCategory.ConsoleApp
 
         internal void Read()
         {
-            Category category = new();
+            CategoryReport category = new();
 
             try
             {
@@ -52,7 +54,7 @@ namespace TradeCategory.ConsoleApp
                                   referenceDate);
         }
 
-        private void SetTrade(Category category)
+        private void SetTrade(CategoryReport category)
         {
             var errorMessage = string.Empty;
             string _clientSector = string.Empty;

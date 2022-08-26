@@ -2,12 +2,12 @@
 
 namespace TradeCategory.Repository.Strategy
 {
-    internal class RuleExpired : ICategoryRule
+    internal class ExpiredCategory : ICategoryRule
     {
         public string NameCategory { get; }
         private DateTime _referenceDate;
 
-        public RuleExpired(DateTime referenceDate)
+        public ExpiredCategory(DateTime referenceDate)
         {
             _referenceDate = referenceDate;
             NameCategory = "EXPIRED";
