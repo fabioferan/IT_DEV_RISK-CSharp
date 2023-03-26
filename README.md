@@ -1,4 +1,4 @@
-# Credit Suisse – IT DEV RISK
+# IT DEV RISK - CSharp
 
 **Problem:** Categorize trades in a bank´s portfolio
 
